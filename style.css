@@ -78,3 +78,9 @@ body {
   ul li, ul li strong{
     color: #212529;
   }
+
+  .profile-img {
+    max-width: 200px;
+    display: block;
+    margin: 0 auto;
+  }
