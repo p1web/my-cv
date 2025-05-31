@@ -8,51 +8,38 @@
   <meta name="keywords" content="Node.js, PHP, Laravel, CodeIgniter, Full Stack Development, Technical Consultant, Software Development">
   <meta property="og:title" content="Pawan Dubey - Senior Technical Consultant (Full Stack Development)">
   <meta property="og:description" content="Experienced Senior Technical Consultant with expertise in Node.js, PHP, Laravel, CodeIgniter, and full stack development.">
-  <meta property="og:image" content="https://p1web.github.io/my-cv/assets/img/p1.jpeg">
+  <meta property="og:image" content="https://p1web.github.io/my-cv/img/p1.jpeg">
 
-  <link href="assets/css/bootstrap.min.css" rel="stylesheet">
-  <link href="assets/css/style.css" rel="stylesheet">
-  <style>
-    body, html {
-      margin: 0;
-      padding: 0;
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script>
+     @media print {
+      /* Hide buttons, navs, etc. */
+      #printBtn, nav, footer {
+        display: none !important;
+      }
+
+      /* Prevent Bootstrap from collapsing margins/paddings */
+      body, .container {
+        margin: 0 !important;
+        padding: 0 !important;
+      }
+
+      /* Prevent page breaks inside important sections */
+      .section {
+        page-break-inside: avoid;
+      }
+
+      /* Force one-column layout if needed */
+      .row {
+        display: block !important;
+      }
     }
 
-    #printBtn {
-      position: fixed;
-      top: 50%;
-      right: 20px;
-      transform: rotate(90deg) translateY(-50%);
-      transform-origin: right top;
-      z-index: 9999;
-      padding: 10px 16px;
-      background-color: #0056b3;
-      color: white;
-      border: none;
-      border-radius: 5px 5px 0 0;
-      cursor: pointer;
-    }
-
-    #printBtn:hover {
-      background-color: #013976;
-    }
-
-    #resume {
-       width: 1122px;        /* A3 width in portrait */
-       margin: 0 auto;
-       padding: 0;
-       box-sizing: border-box;
-       overflow: hidden;
-       box-shadow: 0px 0px 8px #022c40;
-    }
-
-  </style>
+  </script>
 </head>
 <body>
-  <div class="container" id="resume" >
-    
-    <button id="printBtn" onclick="generatePDF()">Download</button>
-
+  <div class="container my-0 my-lg-5" id="resume">
     <div class="resume p-4 rounded">
         <div class="col-12 header text-white py-4 px-3 ">
             <h1 class="fw-bold text-center mb-1">Pawan Dubey</h1>
@@ -64,7 +51,7 @@
         <div class="col-md-3 left-column">
 
           <div class="profile_pic text-center mb-3">
-            <img src="assets/img/p1.jpeg" class="img-thumbnail profile-img">
+            <img src="img/p1.jpeg" class="img-thumbnail profile-img">
           </div>
 
           <h5 class="section-title">Contact</h5>
@@ -163,11 +150,12 @@
       
     </div>
 
+      <button onclick="printSection('resume')" id="printBtn">Print or Save Resume</button>
+
 
 
 
   </div>
-  <script src="assets/js/html2pdf.bundle.min.js"></script>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -175,29 +163,31 @@
     "name": "Pawan Dubey",
     "jobTitle": "Senior Technical Consultant (Full Stack Development)",
     "description": "Experienced Senior Technical Consultant with expertise in Node.js, PHP, Laravel, CodeIgniter, and full stack development.",
-    "image": "https://p1web.github.io/my-cv/assets/img/p1.jpeg",
+    "image": "https://p1web.github.io/my-cv/img/p1.jpeg",
     "sameAs": ["https://www.linkedin.com/in/pawan-dubey-97b219157/"],
     "url": "https://p1web.github.io/my-cv/"
   }
 </script>
 <script>
-  function generatePDF() {
-    const element = document.getElementById('resume');
-    const printBtn = document.getElementById('printBtn');
-    printBtn.style.display = 'none';
+  function printSection(id) {
+    const content = document.getElementById(id).innerHTML;
+    const printWindow = window.open('', '', 'height=800,width=600');
+    printWindow.document.write('<html><head><title>Resume</title>');
 
-    const opt = {
-      margin: [0, 0, 0, 0],
-      filename: 'Resume_A3.pdf',
-      image: { type: 'jpeg', quality: 0.98 },
-      html2canvas: { scale: 2, scrollY: 0 },
-      jsPDF: { unit: 'pt', format: [820, 950], orientation: 'portrait' },
-      pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
-    };
+    // Optional: Include Bootstrap and your CSS
+    printWindow.document.write('<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">');
+    printWindow.document.write('<link rel="stylesheet" href="styles.css">');
 
-    html2pdf().set(opt).from(element).save().then(() => {
-      printBtn.style.display = 'inline-block';
-    });
+    printWindow.document.write('</head><body>');
+    printWindow.document.write(content);
+    printWindow.document.write('</body></html>');
+    printWindow.document.close();
+    printWindow.focus();
+
+    setTimeout(() => {
+      printWindow.print();
+      printWindow.close();
+    }, 500);
   }
 </script>
 </body>
