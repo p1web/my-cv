@@ -114,4 +114,8 @@
       display: block;
       margin: 0 auto;
     }
+
+    #printBtn {
+      display: none!important;
+    }
   }
