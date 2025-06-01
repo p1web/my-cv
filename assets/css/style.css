@@ -11,7 +11,14 @@
   }
   .container,
   .resume {
-      padding: 0 !important;
+    padding: 0 !important;
+    margin: 0;
+  }
+
+  .job-profile{
+      color: #fff;
+      font-weight: 400;
+      text-shadow: 1px 0px 20px #000;
   }
 
   .left-column,
@@ -70,7 +77,13 @@
       list-style: none;
   }
   .header{
-      background-color: #858585;
+    margin: 0;
+    background-image: url(../../assets/img/22.png);
+    min-height: 130px;
+    /* background-attachment: fixed; */
+    background-position: bottom;
+    background-repeat: no-repeat;
+    background-size: cover;
   }
 
   ul li, ul li strong{
