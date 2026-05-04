@@ -1,0 +1,9 @@
+
+services:
+  resume-app:
+    build: .
+    image: my-resume-app
+    container_name: resume-node-app
+    ports:
+      - "3000:3000"
+    restart: always
