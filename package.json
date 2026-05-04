@@ -1,0 +1,14 @@
+{
+    "name": "resume-node-app",
+    "version": "1.0.0",
+    "description": "A simple resume website built with Node.js",
+    "main": "server.js",
+    "scripts": {
+        "start": "node server.js"
+    },
+    "author": "Pawan Dubey",
+    "license": "ISC",
+    "dependencies": {
+        "express": "^4.18.2"
+    }
+}
